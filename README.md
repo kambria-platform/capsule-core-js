@@ -1,8 +1,6 @@
 # Introduction
 
-🚀 CapsuleJS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps.
-
-CapsuleJS is an opensource and you can feel free to use it as well as contribute it.
+🚀 CapsuleJS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps. CapsuleJS is an opensource and you can feel free to use it as well as contribute it.
 
 * [View release log](./RELEASE.md)
 
@@ -199,7 +197,7 @@ trezor.setAccountByTrezorOne(path, index, (er, re) => {
 
 ## Fetch account info
 
-After received a `provider`. You can fetch account info by `fetch` function.
+After received a `provider` instance. You can fetch account info by `fetch` function.
 
 ```
 provider.fetch().then(result => {
@@ -211,7 +209,7 @@ provider.fetch().then(result => {
 
 ## Watch changes of account info
 
-After received a `provider`. You can watch account info if any changes by `watch` function.
+After received a `provider` instance. You can watch account info if any changes by `watch` function.
 
 ```
 provider.watch().then(watcher => {
