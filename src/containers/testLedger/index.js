@@ -20,15 +20,15 @@ class TestLedger extends Component {
   get(web3) {
     web3.version.getNetwork((er, re) => {
       if (er) return console.error(er);
-      return this.setState({ network: JSON.stringify(re) });
+      return this.setState({ network: re });
     });
     web3.eth.getAccounts((er, re) => {
       if (er) return console.error(er);
-      this.setState({ account: JSON.stringify(re[0]) });
+      this.setState({ account: re[0] });
 
       web3.eth.getBalance(re[0], (er, re) => {
         if (er) return console.error(er);
-        return this.setState({ balance: JSON.stringify(re) });
+        return this.setState({ balance: re.toString() });
       });
     });
   }
