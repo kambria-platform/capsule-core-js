@@ -1,0 +1,53 @@
+{
+  "name": "capsule-js",
+  "version": "1.0.0",
+  "description": "🚀 CapsuleJS build a friendly interface for a lot of Ethereum wallets and that might help developers can instantly power their Dapps.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec 'npm run build && npm run fake-module && npm run serve'",
+    "release": "npm run build && npm publish",
+    "build": "npm run clean && npm run build-js",
+    "build-js": "babel src -d dist && babel main.js -o index.js",
+    "clean": "rm -rf index.js && rm -rf dist && rm -rf ./node_modules/capsule-js",
+    "fake-module": "mkdir -p ./node_modules/capsule-js && cp -R ./index.js ./node_modules/capsule-js && cp -R ./dist ./node_modules/capsule-js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kambria-platform/capsule-js.git"
+  },
+  "keywords": [
+    "kambria",
+    "capsule-wallet",
+    "ethereum"
+  ],
+  "author": "Tu Phan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kambria-platform/capsule-js/issues"
+  },
+  "homepage": "https://github.com/kambria-platform/capsule-js#readme",
+  "dependencies": {
+    "@ledgerhq/hw-app-eth": "^4.62.0",
+    "@ledgerhq/hw-transport-u2f": "^4.62.0",
+    "@ledgerhq/hw-transport-webusb": "^4.62.0",
+    "@myetherwallet/mewconnect-web-client": "^1.0.14",
+    "bip39": "^3.0.2",
+    "crypto-js": "^3.1.9-1",
+    "ethereumjs-tx": "^2.0.0",
+    "ethereumjs-util": "^6.1.0",
+    "ethereumjs-wallet": "^0.6.3",
+    "hdkey": "^1.1.1",
+    "keythereum": "^1.0.4",
+    "trezor-connect": "^7.0.3",
+    "web3": "^0.20.7",
+    "web3-provider-engine": "^15.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1"
+  }
+}

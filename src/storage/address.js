@@ -1,0 +1,6 @@
+var ADDRESS = {
+  PROVIDER: 'CAPSULE-JS-STORAGE',
+  CACHE: 'CAPSULE-JS-CACHE'
+}
+
+module.exports = ADDRESS;
