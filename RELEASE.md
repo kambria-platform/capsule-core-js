@@ -10,4 +10,4 @@
 
 ### Enhancements
 
-* Add tests (Using Selenium, Mocha and Chai).
+* Add tool test.
