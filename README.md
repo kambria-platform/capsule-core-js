@@ -9,7 +9,7 @@
 ## Install
 
 ```
-npm install --save capsule-js
+npm install --save capsule-core-js
 ```
 
 ### Usage:

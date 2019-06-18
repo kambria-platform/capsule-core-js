@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Isoxys } from 'capsule-js';
+import { Isoxys } from 'capsule-core-js';
 
 const KEYSTORE = require('./UTC--2018-12-18T04:11:54.738Z--3c86f3337d94b8890b35f27de8a6b4913bc87517.json');
 const PRIVATEKEY = '9c5074452915564f3aadc51dc55f6152707552f5f38090877e7819b3f43ed7b9';

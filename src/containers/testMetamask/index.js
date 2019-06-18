@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Metamask } from 'capsule-js';
+import { Metamask } from 'capsule-core-js';
 
 const DEFAULT_STATE = {
   network: null,

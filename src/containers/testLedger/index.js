@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Ledger } from 'capsule-js';
+import { Ledger } from 'capsule-core-js';
 
 const DEFAULT_STATE = {
   network: null,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Trezor } from 'capsule-js';
+import { Trezor } from 'capsule-core-js';
 
 const DEFAULT_STATE = {
   network: null,

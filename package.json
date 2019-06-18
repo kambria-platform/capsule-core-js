@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run build-js",
     "build-js": "babel lib -d dist && babel main.js -o index.js",
     "clean": "rm -rf index.js && rm -rf dist && rm -rf ./node_modules/capsule-core-js",
-    "fake-module": "mkdir -p ./node_modules/capsule-core-js && cp -R ./index.js ./node_modules/capsule-js && cp -R ./dist ./node_modules/capsule-js",
+    "fake-module": "mkdir -p ./node_modules/capsule-core-js && cp -R ./index.js ./node_modules/capsule-core-js && cp -R ./dist ./node_modules/capsule-core-js",
     "start": "npm run build && npm run fake-module && npm run serve",
     "serve": "HTTPS=true REACT_APP_ENV=development react-scripts start",
     "test": "npm run build && mocha"

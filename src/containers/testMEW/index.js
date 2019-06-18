@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MEW } from 'capsule-js';
+import { MEW } from 'capsule-core-js';
 
 const DEFAULT_STATE = {
   visible: false,
