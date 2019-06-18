@@ -1,5 +1,5 @@
 {
-  "name": "capsule-js",
+  "name": "capsule-core-js",
   "version": "1.0.0",
   "description": "🚀 CapsuleJS build a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps.",
   "main": "index.js",
@@ -7,15 +7,15 @@
     "release": "npm run build && npm publish",
     "build": "npm run clean && npm run build-js",
     "build-js": "babel lib -d dist && babel main.js -o index.js",
-    "clean": "rm -rf index.js && rm -rf dist && rm -rf ./node_modules/capsule-js",
-    "fake-module": "mkdir -p ./node_modules/capsule-js && cp -R ./index.js ./node_modules/capsule-js && cp -R ./dist ./node_modules/capsule-js",
+    "clean": "rm -rf index.js && rm -rf dist && rm -rf ./node_modules/capsule-core-js",
+    "fake-module": "mkdir -p ./node_modules/capsule-core-js && cp -R ./index.js ./node_modules/capsule-js && cp -R ./dist ./node_modules/capsule-js",
     "start": "npm run build && npm run fake-module && npm run serve",
     "serve": "HTTPS=true REACT_APP_ENV=development react-scripts start",
     "test": "npm run build && mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kambria-platform/capsule-js.git"
+    "url": "git+https://github.com/kambria-platform/capsule-core-js.git"
   },
   "keywords": [
     "kambria",
@@ -25,9 +25,9 @@
   "author": "Tu Phan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kambria-platform/capsule-js/issues"
+    "url": "https://github.com/kambria-platform/capsule-core-js/issues"
   },
-  "homepage": "https://github.com/kambria-platform/capsule-js#readme",
+  "homepage": "https://github.com/kambria-platform/capsule-core-js#readme",
   "dependencies": {
     "@ledgerhq/hw-app-eth": "^4.62.0",
     "@ledgerhq/hw-transport-u2f": "^4.62.0",
