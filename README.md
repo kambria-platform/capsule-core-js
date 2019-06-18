@@ -275,10 +275,20 @@ export default Example;
 
 ## How to test?
 
+Because this package supports many wallets that were built for many enviroments, many purposes by many parties. As a complex result, a general test scheme is very difficult. We might implement e2e tests by utilizing React as a redering machine for running Selenium, Mocha and Chai.
+
+The related folder for testing comprises `public` `src` (React folders) and `test` (Test descriptions).
+
 ### E2E test
 
 ```
 npm test
+```
+
+### Tool test
+
+```
+npm start
 ```
 
 ## Appendix
@@ -289,4 +299,5 @@ npm test
 | :---: | --------------- | ----------------------------- |
 |   1   | `npm install`   | Install module packages       |
 |   2   | `npm run build` | Build libraries in production |
-|   3   | `npm test`      | Run test                      |
+|   3   | `npm test`      | Run e2e test                  |
+|   4   | `npm start`     | Run tool test                 |
