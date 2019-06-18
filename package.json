@@ -1,10 +1,9 @@
 {
   "name": "capsule-js",
   "version": "1.0.0",
-  "description": "🚀 CapsuleJS build a friendly interface for a lot of Ethereum wallets and that might help developers can instantly power their Dapps.",
+  "description": "🚀 CapsuleJS build a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec 'npm run build && npm run fake-module && npm run serve'",
     "release": "npm run build && npm publish",
     "build": "npm run clean && npm run build-js",
     "build-js": "babel src -d dist && babel main.js -o index.js",
@@ -47,7 +46,6 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "nodemon": "^1.19.1"
+    "@babel/preset-env": "^7.4.5"
   }
 }
