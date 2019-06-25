@@ -1,5 +1,17 @@
 # RELEASE LOG
 
+## 1.0.3
+
+### Fixes
+
+* Return error when invalid private key
+
+### Enhancements
+
+* None
+
+---
+
 ## 1.0.0 - 1.0.1 - 1.0.2
 
 ### Fixes
