@@ -16,17 +16,34 @@ npm install --save capsule-core-js
 
 # API
 
+## NonWallet module
+
+In case you would like to fetch some info from blockchain without account association, `NonWallet` is for you.
+
+```
+import { NonWallet } from 'capsule-core-js';
+
+var net = 4 \\ Your network id
+
+var nonWallet = new NonWallet(net);
+nonWallet.init((er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', nonWallet);
+});
+```
+
 ## Metamask module
 
 ```
-import { Metamask } from 'capsule-wallet';
+import { Metamask } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 var type = 'softwallet' \\ Don't modify it
 var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
 var metamask = new Metamask(net, type, restrictMode);
-metamask.setAccountByMetamask(function (er, re) {
+metamask.setAccountByMetamask((er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', metamask);
@@ -36,20 +53,20 @@ metamask.setAccountByMetamask(function (er, re) {
 ## MEW (MyEtherwallet) module
 
 ```
-import { MEW } from 'capsule-wallet';
+import { MEW } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 var type = 'hybridwallet' \\ Don't modify it
 var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
-var getAuthentication = function(qrcode, callback) {
+var getAuthentication = (qrcode, callback) => {
   // This function is to show off the QRcode to user
   // User must use MEW application on their phone to scan the QRcode and establish the connection
   // When the connection is established, callback will be called
 }
 
 var mew = new MEW(net, type, restrictMode);
-mew.setAccountByMEW(getAuthentication, (er, re) => {
+mew.setAccountByMEW(getAuthentication, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', mew);
@@ -61,13 +78,13 @@ mew.setAccountByMEW(getAuthentication, (er, re) => {
 Isoxys is a group of software wallets. It includes mnemonic, keystore and private key. All of them are sensitive data, so we do not recommend to use it.
 
 ```
-import { Isoxys } from 'capsule-wallet';
+import { Isoxys } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 var type = 'softwallet' \\ Don't modify it
 var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
-var getPassphrase = function(callback) {
+var getPassphrase = (callback) => {
   // This function to show off the input form
   // User must enter a temporary passphrase to protect the data in this session
   // When user entered passphrase, return callback(null, passphrase)
@@ -87,7 +104,7 @@ isoxys.getAccountByPrivatekey(privatekey, (er, address) => {
 });
 
 var privatekey = ... // Private key
-isoxys.setAccountByPrivatekey(privatekey, getPassphrase, (er, re) => {
+isoxys.setAccountByPrivatekey(privatekey, getPassphrase, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', isoxys);
@@ -111,7 +128,7 @@ var mnemonic = ... // Mnemonic string
 var password = ... // Mnemonic password
 var path = ... // Derivation path
 var index = ... // Derivation child index
-isoxys.setAccountByMnemonic(mnemonic, password, path, index, getPassphrase, (er, re) => {
+isoxys.setAccountByMnemonic(mnemonic, password, path, index, getPassphrase, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', isoxys);
@@ -130,7 +147,7 @@ isoxys.getAccountByKeystore(input, password, (er, address) => {
 
 var input = ... // Json object of keystore
 var password = .. // Keystore password
-isoxys.setAccountByKeystore(input, password, getPassphrase, (er, re) => {
+isoxys.setAccountByKeystore(input, password, getPassphrase, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', isoxys);
@@ -140,7 +157,7 @@ isoxys.setAccountByKeystore(input, password, getPassphrase, (er, re) => {
 ## Ledger module
 
 ```
-import { Ledger } from 'capsule-wallet';
+import { Ledger } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 var type = 'hardwallet' \\ Don't modify it
@@ -159,7 +176,7 @@ ledger.getAccountsByLedgerNanoS(path, limit, page, (er, addresses) => {
 
 var path = ... // Derivation path
 var index = ... // Derivation child index
-ledger.setAccountByLedgerNanoS(path, index, (er, re) => {
+ledger.setAccountByLedgerNanoS(path, index, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', ledger);
@@ -169,7 +186,7 @@ ledger.setAccountByLedgerNanoS(path, index, (er, re) => {
 ## Trezor module
 
 ```
-import { Trezor } from 'capsule-wallet';
+import { Trezor } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 var type = 'hardwallet' \\ Don't modify it
@@ -188,7 +205,7 @@ trezor.getAccountsByTrezorOne(path, limit, page, (er, addresses) => {
 
 var path = ... // Derivation path
 var index = ... // Derivation child index
-trezor.setAccountByTrezorOne(path, index, (er, re) => {
+trezor.setAccountByTrezorOne(path, index, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', trezor);
@@ -255,11 +272,10 @@ class Example extends Component {
   }
 
   componentDidMount() {
-    var self = this;
     this.isoxys.setAccountByMnemonic(accOpts.mnemonic, accOpts.password, accOpts.path, accOpts.index, this.getPassphrase, (er, re) => {
       if (er) return console.error(er);
 
-      console.log('Provider instance is:', self.isoxys);
+      console.log('Provider instance is:', this.isoxys);
     });
   }
 

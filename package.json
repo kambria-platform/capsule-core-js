@@ -1,6 +1,6 @@
 {
   "name": "capsule-core-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "🚀 CapsuleJS build a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps.",
   "main": "index.js",
   "scripts": {
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "react": "^16.8.6",

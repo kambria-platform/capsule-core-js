@@ -1,5 +1,17 @@
 # RELEASE LOG
 
+## 1.0.4
+
+### Fixes
+
+* Using arrow function, the code no longer needed `self = this` for functions.
+
+### Enhancements
+
+* Add `NonWallet` type. In case you would like to fetch some info from blockchain without account association, `NonWallet` is for you.
+
+---
+
 ## 1.0.3
 
 ### Fixes

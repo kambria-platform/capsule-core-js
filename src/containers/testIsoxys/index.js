@@ -15,15 +15,10 @@ const DEFAULT_STATE = {
 class TestIsoxys extends Component {
   constructor() {
     super();
-    this.state = DEFAULT_STATE;
-
-    this.get = this.get.bind(this);
-    this.connectByPrivatekey = this.connectByPrivatekey.bind(this);
-    this.connectByMnemonic = this.connectByMnemonic.bind(this);
-    this.connectByKeystore = this.connectByKeystore.bind(this);
+    this.state = { ...DEFAULT_STATE };
   }
 
-  get(web3) {
+  get = (web3) => {
     web3.version.getNetwork((er, re) => {
       if (er) return console.error(er);
       return this.setState({ network: re });
@@ -39,7 +34,7 @@ class TestIsoxys extends Component {
     });
   }
 
-  connectByPrivatekey() {
+  connectByPrivatekey = () => {
     this.isoxys = new Isoxys(4, 'softwallet', true);
     this.isoxys.setAccountByPrivatekey(
       PRIVATEKEY,
@@ -50,7 +45,7 @@ class TestIsoxys extends Component {
       });
   }
 
-  connectByMnemonic() {
+  connectByMnemonic = () => {
     this.isoxys = new Isoxys(4, 'softwallet', true);
     this.isoxys.setAccountByMnemonic(
       MNEMONIC,
@@ -64,7 +59,7 @@ class TestIsoxys extends Component {
       });
   }
 
-  connectByKeystore() {
+  connectByKeystore = () => {
     this.isoxys = new Isoxys(4, 'softwallet', true);
     this.isoxys.setAccountByKeystore(
       KEYSTORE,
@@ -76,6 +71,17 @@ class TestIsoxys extends Component {
       });
   }
 
+  sendTx = () => {
+    this.isoxys.web3.eth.sendTransaction({
+      from: this.state.account,
+      to: '0x5a926b235e992d6ba52d98415e66afe5078a1690',
+      value: '1000000000000000'
+    }, (er, txId) => {
+      if (er) return console.error(er);
+      return console.log(txId);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -83,6 +89,7 @@ class TestIsoxys extends Component {
         <button onClick={this.connectByPrivatekey}>Connect by Privatekey</button>
         <button onClick={this.connectByMnemonic}>Connect by Mnemonic</button>
         <button onClick={this.connectByKeystore}>Connect by Keystore</button>
+        <button onClick={this.sendTx}>Send</button>
         <p>Network: {this.state.network}</p>
         <p>Account: {this.state.account}</p>
         <p>Balance: {this.state.balance}</p>

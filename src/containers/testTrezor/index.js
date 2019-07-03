@@ -11,14 +11,10 @@ const DEFAULT_STATE = {
 class TestTrezor extends Component {
   constructor() {
     super();
-    this.state = DEFAULT_STATE;
-
-    this.get = this.get.bind(this);
-    this.connect = this.connect.bind(this);
-    this.sendTx = this.sendTx.bind(this);
+    this.state = { ...DEFAULT_STATE };
   }
 
-  get(web3) {
+  get = (web3) => {
     web3.version.getNetwork((er, re) => {
       if (er) return console.error(er);
       return this.setState({ network: re });
@@ -34,26 +30,20 @@ class TestTrezor extends Component {
     });
   }
 
-  connect() {
+  connect = () => {
     this.trezor = new Trezor(4, 'hardwallet', true);
-
-    this.trezor.getAccountsByTrezorOne("m/44'/60'/0'/0", 5, 0, (er, re) => {
+    this.trezor.setAccountByTrezorOne("m/44'/60'/0'/0", 0, (er, web3) => {
       if (er) return console.error(er);
-      this.setState({ expectedAddress: re[0] });
-
-      this.trezor.setAccountByTrezorOne("m/44'/60'/0'/0", 0, (er, web3) => {
-        if (er) return console.error(er);
-        return this.get(web3);
-      });
+      return this.get(web3);
     });
   }
 
-  sendTx() {
+  sendTx = () => {
     this.trezor.web3.eth.sendTransaction({
       from: this.state.account,
       to: '0x5a926b235e992d6ba52d98415e66afe5078a1690',
       value: '1000000000000000'
-    }, function (er, txId) {
+    }, (er, txId) => {
       if (er) return console.error(er);
       return console.log(txId);
     });
@@ -66,7 +56,7 @@ class TestTrezor extends Component {
         <button onClick={this.connect}>Connect</button>
         <button onClick={this.sendTx}>Send</button>
         <p>Network: {this.state.network}</p>
-        <p>Account: {this.state.account} (Expected account: {this.state.expectedAddress})</p>
+        <p>Account: {this.state.account}</p>
         <p>Balance: {this.state.balance}</p>
       </div>
     );

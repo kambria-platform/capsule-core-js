@@ -13,8 +13,7 @@ const DEFAULT_STATE = {
 class TestMEW extends Component {
   constructor() {
     super();
-    this.state = DEFAULT_STATE;
-
+    this.state = { ...DEFAULT_STATE };
     console.log(MEW)
   }
 

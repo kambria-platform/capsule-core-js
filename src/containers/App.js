@@ -6,6 +6,7 @@ import TestIsoxys from './testIsoxys';
 import TestMEW from './testMEW';
 import TestLedger from './testLedger';
 import TestTrezor from './testTrezor';
+import TestNonWallet from './testNonWallet';
 
 const margin = { marginRight: '10px' }
 
@@ -20,6 +21,7 @@ class App extends Component {
             <Link style={margin} to='/mew'>Test MEW</Link>
             <Link style={margin} to='/ledger'>Test Ledger</Link>
             <Link style={margin} to='/trezor'>Test Trezor</Link>
+            <Link style={margin} to='/nonwallet'>Test NonWallet</Link>
           </header>
           <main>
             <Switch>
@@ -29,6 +31,7 @@ class App extends Component {
               <Route exact path='/mew' component={TestMEW} />
               <Route exact path='/ledger' component={TestLedger} />
               <Route exact path='/trezor' component={TestTrezor} />
+              <Route exact path='/nonwallet' component={TestNonWallet} />
             </Switch>
           </main>
         </div>
