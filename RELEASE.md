@@ -1,6 +1,6 @@
 # RELEASE LOG
 
-## 1.0.5
+## 1.0.6
 
 ### Fixes
 
@@ -23,6 +23,10 @@ watcher.stopWatching();
 ### Enhancements
 
 * Add `logout` wallet function.
+
+---
+
+## 1.0.5: UNPUBLISHED
 
 ---
 
