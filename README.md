@@ -229,15 +229,11 @@ provider.fetch().then(result => {
 After received a `provider` instance. You can watch account info if any changes by `watch` function.
 
 ```
-provider.watch().then(watcher => {
-  watcher.event.on('data', result => {
-    console.log('Result:', result);
-  });
-  watcher.event.on('error', error => {
-    console.log('Error:', error);
-  });
-}).catch(er => {
-  console.log('Error:', error);
+let watcher = provider.watch((er, re) => {
+  if(er) return console.error(er);
+
+  // Called only when having a change.
+  console.log(re);
 });
 ```
 

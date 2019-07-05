@@ -1,5 +1,31 @@
 # RELEASE LOG
 
+## 1.0.5
+
+### Fixes
+
+* Fix bug `window.capsuleWallet.isConnected` undefined.
+* Change `setInterval` to `filter('latest')` for efficient change detection.
+* New `watch` function api.
+
+```
+let watcher = this.<wallet>.watch((er, re) => {
+  if(er) return console.error(er);
+
+  // Called only when having a change.
+  console.log(re);
+});
+
+// Stop watching
+watcher.stopWatching();
+```
+
+### Enhancements
+
+* Add `logout` wallet function.
+
+---
+
 ## 1.0.4
 
 ### Fixes
