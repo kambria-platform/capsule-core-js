@@ -1,5 +1,17 @@
 # RELEASE LOG
 
+## 1.0.7
+
+### Fixes
+
+* Cache addresses when deriving from root node.
+
+### Enhancements
+
+* None
+
+---
+
 ## 1.0.6
 
 ### Fixes

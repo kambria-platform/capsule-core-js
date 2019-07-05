@@ -1,6 +1,6 @@
 {
   "name": "capsule-core-js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "🚀 CapsuleJS build a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps.",
   "main": "index.js",
   "scripts": {

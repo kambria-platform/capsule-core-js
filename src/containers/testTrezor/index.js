@@ -12,15 +12,17 @@ class TestTrezor extends Component {
   constructor() {
     super();
     this.state = { ...DEFAULT_STATE };
+    this.trezor = new Trezor(4, 'hardwallet', true);
   }
 
   connect = () => {
-    this.trezor = new Trezor(4, 'hardwallet', true);
-    this.trezor.setAccountByTrezorOne("m/44'/60'/0'/0", 0, (er, web3) => {
-      if (er) return console.error(er);
-      this.watcher = this.trezor.watch((er, re) => {
+    this.trezor.getAccountsByTrezorOne("m/44'/60'/0'/0", 5, 0, (er, re) => {
+      this.trezor.setAccountByTrezorOne("m/44'/60'/0'/0", 0, (er, web3) => {
         if (er) return console.error(er);
-        this.setState(re);
+        this.watcher = this.trezor.watch((er, re) => {
+          if (er) return console.error(er);
+          this.setState(re);
+        });
       });
     });
   }
