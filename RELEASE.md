@@ -8,7 +8,7 @@
 
 ### Enhancements
 
-* None
+* Remove `change` event from `watch` function.
 
 ---
 
