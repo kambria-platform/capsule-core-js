@@ -12,15 +12,17 @@ class TestLedger extends Component {
   constructor() {
     super();
     this.state = { ...DEFAULT_STATE };
+    this.ledger = new Ledger(4, 'hardwallet', true);
   }
 
   connect = () => {
-    this.ledger = new Ledger(4, 'hardwallet', true);
-    this.ledger.setAccountByLedgerNanoS("m/44'/60'/0'/0", 0, (er, web3) => {
-      if (er) return console.error(er);
-      this.watcher = this.ledger.watch((er, re) => {
+    this.ledger.getAccountsByLedgerNanoS("m/44'/60'/0'/0", 5, 0, (er, re) => {
+      this.ledger.setAccountByLedgerNanoS("m/44'/60'/0'/0", 0, (er, web3) => {
         if (er) return console.error(er);
-        this.setState(re);
+        this.watcher = this.ledger.watch((er, re) => {
+          if (er) return console.error(er);
+          this.setState(re);
+        });
       });
     });
   }

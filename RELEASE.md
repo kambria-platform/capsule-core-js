@@ -1,5 +1,17 @@
 # RELEASE LOG
 
+## 1.0.8
+
+### Fixes
+
+* Hot fix cache
+
+### Enhancements
+
+* None
+
+---
+
 ## 1.0.7
 
 ### Fixes
