@@ -5,7 +5,6 @@
 ### Fixes
 
 * Specialize the mechanism of logout.
-* 
 
 ### Enhancements
 
