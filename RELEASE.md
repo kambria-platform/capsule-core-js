@@ -1,5 +1,19 @@
 # RELEASE LOG
 
+## 1.0.9
+
+### Fixes
+
+* Specialize the mechanism of logout.
+* 
+
+### Enhancements
+
+* Quick development with `nodemon`.
+* Support `Trust Wallet`. 🎉🎉🎉
+
+---
+
 ## 1.0.8
 
 ### Fixes

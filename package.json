@@ -1,6 +1,6 @@
 {
   "name": "capsule-core-js",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "🚀 CapsuleJS build a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build-js": "babel lib -d dist && babel main.js -o index.js",
     "clean": "rm -rf index.js && rm -rf dist && rm -rf ./node_modules/capsule-core-js",
     "fake-module": "mkdir -p ./node_modules/capsule-core-js && cp -R ./index.js ./node_modules/capsule-core-js && cp -R ./dist ./node_modules/capsule-core-js",
-    "start": "npm run build && npm run fake-module && npm run serve",
+    "start": "nodemon --exec 'npm run build && npm run fake-module && npm run serve'",
     "serve": "HTTPS=true PORT=3003 REACT_APP_ENV=development react-scripts start",
     "test": "npm run build && mocha"
   },
@@ -33,6 +33,8 @@
     "@ledgerhq/hw-transport-u2f": "^4.62.0",
     "@ledgerhq/hw-transport-webusb": "^4.62.0",
     "@myetherwallet/mewconnect-web-client": "^1.0.14",
+    "@walletconnect/browser": "^1.0.0-beta.30",
+    "@walletconnect/qrcode-modal": "^1.0.0-beta.30",
     "bip39": "^3.0.2",
     "crypto-js": "^3.1.9-1",
     "ethereumjs-tx": "^1.3.7",
@@ -50,6 +52,7 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",

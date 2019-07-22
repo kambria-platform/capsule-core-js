@@ -1,6 +1,6 @@
 # Introduction
 
-🚀 CapsuleJS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps. CapsuleJS is an opensource and you can feel free to use it as well as contribute it.
+🚀 Capsule-Core-JS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps. Capsule-Core-JS is an opensource and you can feel free to use it as well as contribute it.
 
 * [View release log](./RELEASE.md)
 
@@ -59,13 +59,25 @@ var net = 4 \\ Your network id
 var type = 'hybridwallet' \\ Don't modify it
 var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
-var getAuthentication = (qrcode, callback) => {
-  // This function is to show off the QRcode to user
-  // User must use MEW application on their phone to scan the QRcode and establish the connection
-  // When the connection is established, callback will be called
+var getAuthentication = {
+  open: (qrcode, callback) => {
+    // This function is to show off the QRcode to user
+    // User must use MEW application on their phone to scan the QRcode and establish the connection
+    // When the connection is established, callback will be called
+  },
+  close: () => {
+    // Turn off the modal
+  }
 }
 
 var mew = new MEW(net, type, restrictMode);
+
+mew.getAccountsByMEW((er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', mew);
+});
+
 mew.setAccountByMEW(getAuthentication, (er, web3) => {
   if (er) return console.error(er);
 
@@ -247,7 +259,7 @@ watcher.stopWatching();
 
 ```
 import React, { Component } from 'react';
-import { Isoxys } from 'capsule-wallet';
+import { Isoxys } from 'capsule-core-js';
 
 const NETWORK = 'rinkeby';
 const TYPE = 'softwallet';
@@ -289,7 +301,7 @@ export default Example;
 
 Because this package supports many wallets that were built for many enviroments, many purposes by many parties. As a complex result, a general test scheme is very difficult. We might implement e2e tests by utilizing React as a redering machine for running Selenium, Mocha and Chai.
 
-The related folder for testing comprises `public` `src` (React folders) and `test` (Test descriptions).
+The related folder for testing comprises `public`, `src` (React folders) and `test` (Test descriptions).
 
 ### E2E test
 

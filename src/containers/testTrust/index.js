@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
-import { MEW } from 'capsule-core-js';
+import { Trust } from 'capsule-core-js';
 
 const DEFAULT_STATE = {
   visible: false,
@@ -11,11 +11,11 @@ const DEFAULT_STATE = {
   error: null
 }
 
-class TestMEW extends Component {
+class TestTrust extends Component {
   constructor() {
     super();
     this.state = { ...DEFAULT_STATE };
-    this.mew = new MEW(3, 'hybridwallet', true);
+    this.trust = new Trust(1, 'hybridwallet', true);
   }
 
   getAuthentication = {
@@ -30,9 +30,9 @@ class TestMEW extends Component {
   }
 
   connect = () => {
-    this.mew.setAccountByMEW(this.getAuthentication, (er, web3) => {
+    this.trust.setAccountByTrustWallet(this.getAuthentication, (er, web3) => {
       if (er) return console.error(er);
-      this.watcher = this.mew.watch((er, re) => {
+      this.watcher = this.trust.watch((er, re) => {
         if (er) return console.error(er);
         this.setState(re);
       });
@@ -40,10 +40,10 @@ class TestMEW extends Component {
   }
 
   sendTx = () => {
-    if (this.mew) this.mew.web3.eth.sendTransaction({
+    if (this.trust) this.trust.web3.eth.sendTransaction({
       from: this.state.account,
       to: this.state.account,
-      value: '1000000000000000'
+      value: '100000000000000'
     }, (er, txId) => {
       if (er) return console.error(er);
       return console.log(txId);
@@ -51,7 +51,7 @@ class TestMEW extends Component {
   }
 
   logout = () => {
-    if (this.mew) this.mew.logout();
+    if (this.trust) this.trust.logout();
   }
 
   componentWillUnmount() {
@@ -61,7 +61,7 @@ class TestMEW extends Component {
   render() {
     return (
       <div>
-        <h1>MEW Test</h1>
+        <h1>Trust Test</h1>
         <button onClick={this.connect}>Connect</button>
         <button onClick={this.sendTx}>Send</button>
         <button onClick={this.logout}>Logout</button>
@@ -73,4 +73,4 @@ class TestMEW extends Component {
   }
 }
 
-export default TestMEW;
+export default TestTrust;
