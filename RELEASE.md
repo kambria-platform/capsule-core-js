@@ -1,5 +1,17 @@
 # RELEASE LOG
 
+## 1.0.11
+
+### Fixes
+
+* Using `mainnet` as default network
+
+### Enhancements
+
+* None
+
+---
+
 ## 1.0.10
 
 ### Fixes
