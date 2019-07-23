@@ -1,5 +1,17 @@
 # RELEASE LOG
 
+## 1.0.10
+
+### Fixes
+
+* None
+
+### Enhancements
+
+* Support browser refreshing to `Trust Wallet`. 🎉🎉🎉
+
+---
+
 ## 1.0.9
 
 ### Fixes
