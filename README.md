@@ -387,7 +387,7 @@ class Example extends Component {
   }
 
   getApprove = (txParams, callback) => {
-    var approved = window.confirm(JSON.stringify(tx, txParams));
+    var approved = window.confirm(JSON.stringify(txParams));
     if (approved) return callback(null, true);
     return callback(null, false);
   }
