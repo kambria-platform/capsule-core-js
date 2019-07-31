@@ -39,10 +39,8 @@ nonWallet.init((er, web3) => {
 import { Metamask } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
-var type = 'softwallet' \\ Don't modify it
-var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
-var metamask = new Metamask(net, type, restrictMode);
+var metamask = new Metamask(net);
 metamask.setAccountByMetamask((er, web3) => {
   if (er) return console.error(er);
 
@@ -56,8 +54,6 @@ metamask.setAccountByMetamask((er, web3) => {
 import { MEW } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
-var type = 'hybridwallet' \\ Don't modify it
-var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
 var getAuthentication = {
   open: (qrcode, callback) => {
@@ -70,7 +66,7 @@ var getAuthentication = {
   }
 }
 
-var mew = new MEW(net, type, restrictMode);
+var mew = new MEW(net);
 
 mew.getAccountsByMEW((er, web3) => {
   if (er) return console.error(er);
@@ -93,8 +89,6 @@ Isoxys is a group of software wallets. It includes mnemonic, keystore and privat
 import { Isoxys } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
-var type = 'softwallet' \\ Don't modify it
-var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
 var getPassphrase = (callback) => {
   // This function to show off the input form
@@ -103,7 +97,7 @@ var getPassphrase = (callback) => {
   // If denied, return callback('Reason msg', null)
 }
 
-var isoxys = new Isoxys(net, type, restrictMode);
+var isoxys = new Isoxys(net);
 
 
 // Privatekey
@@ -172,10 +166,8 @@ isoxys.setAccountByKeystore(input, password, getPassphrase, (er, web3) => {
 import { Ledger } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
-var type = 'hardwallet' \\ Don't modify it
-var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
-var ledger = new Ledger(net, type, restrictMode);
+var ledger = new Ledger(net);
 
 var path = ... // Derivation path
 var limit = ... // The number of records in a page (pagination)
@@ -201,10 +193,8 @@ ledger.setAccountByLedgerNanoS(path, index, (er, web3) => {
 import { Trezor } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
-var type = 'hardwallet' \\ Don't modify it
-var restrictMode = true \\ If true, this mode won't allow network changing. If false, vice versa.
 
-var trezor = new Trezor(net, type, restrictMode);
+var trezor = new Trezor(net);
 
 var path = ... // Derivation path
 var limit = ... // The number of records in a page (pagination)
@@ -262,8 +252,6 @@ import React, { Component } from 'react';
 import { Isoxys } from 'capsule-core-js';
 
 const NETWORK = 'rinkeby';
-const TYPE = 'softwallet';
-const RESTRICT = true;
 
 const accOpts = {
   mnemonic: 'expand lake',
@@ -276,7 +264,7 @@ class Example extends Component {
   constructor() {
     super();
 
-    this.isoxys = new Isoxys(NETWORK, TYPE, RESTRICT);
+    this.isoxys = new Isoxys(NETWORK);
   }
 
   componentDidMount() {

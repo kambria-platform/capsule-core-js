@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
 import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
 import { Trust } from 'capsule-core-js';
+import Confirm from '../core/confirm';
+import Waiting from '../core/waiting';
 
 const DEFAULT_STATE = {
   visible: false,
+  waiting: false,
   network: null,
   account: null,
   balance: null,
-  txId: null,
-  error: null
+  txId: null
 }
 
 class TestTrust extends Component {
   constructor() {
     super();
     this.state = { ...DEFAULT_STATE };
-    this.trust = new Trust(1, 'hybridwallet', true);
+    this.options = {
+      getAuthentication: this.getAuthentication,
+      getWaiting: this.getWaiting,
+      getApproval: this.getApproval
+    }
+  }
+
+  getApproval = (params, callback) => {
+    this.setState({
+      visible: true,
+      message: `From: ${params.from} / To: ${params.to} / Value: ${params.value}`,
+      onCancel: () => {
+        this.setState({ visible: false }, () => {
+          return callback(null, false);
+        });
+      },
+      onApprove: () => {
+        this.setState({ visible: false }, () => {
+          return callback(null, true);
+        });
+      }
+    })
+  }
+
+  getWaiting = {
+    open: () => {
+      this.setState({ waiting: true });
+    },
+    close: () => {
+      this.setState({ waiting: false });
+    }
   }
 
   getAuthentication = {
@@ -30,7 +62,8 @@ class TestTrust extends Component {
   }
 
   connect = () => {
-    this.trust.setAccountByTrustWallet(this.getAuthentication, (er, web3) => {
+    this.trust = new Trust(4, this.options);
+    this.trust.setAccountByTrustWallet((er, web3) => {
       if (er) return console.error(er);
       this.watcher = this.trust.watch((er, re) => {
         if (er) return console.error(er);
@@ -68,6 +101,14 @@ class TestTrust extends Component {
         <p>Network: {this.state.network}</p>
         <p>Account: {this.state.account}</p>
         <p>Balance: {this.state.balance}</p>
+        <Confirm
+          open={this.state.visible}
+          message={this.state.message}
+          onClose={this.state.onCancel}
+          onCancel={this.state.onCancel}
+          onApprove={this.state.onApprove}
+        />
+        <Waiting open={this.state.waiting} />
       </div>
     );
   }

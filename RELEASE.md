@@ -1,14 +1,28 @@
 # RELEASE LOG
 
+## 1.1.0
+
+### Fixes
+
+* Import token test.
+
+### Enhancements
+
+* Restricted network will be `true` in all case. You cannot be able to config.
+* Self-define the type of wallet.
+* Allow `approveTransaction` in config.
+
+---
+
 ## 1.0.11
 
 ### Fixes
 
-* Using `mainnet` as default network
+* Using `mainnet` as default network.
 
 ### Enhancements
 
-* None
+* None.
 
 ---
 
@@ -16,7 +30,7 @@
 
 ### Fixes
 
-* None
+* None.
 
 ### Enhancements
 
@@ -41,7 +55,7 @@
 
 ### Fixes
 
-* Hot fix cache
+* Hot fix cache.
 
 ### Enhancements
 
@@ -57,7 +71,7 @@
 
 ### Enhancements
 
-* None
+* None.
 
 ---
 
@@ -107,11 +121,11 @@ watcher.stopWatching();
 
 ### Fixes
 
-* Return error when invalid private key
+* Return error when invalid private key.
 
 ### Enhancements
 
-* None
+* None.
 
 ---
 
