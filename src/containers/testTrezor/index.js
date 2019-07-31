@@ -64,7 +64,7 @@ class TestTrezor extends Component {
   }
 
   sendTx = () => {
-    this.trezor.web3.eth.sendTransaction({
+    if (this.trezor) this.trezor.web3.eth.sendTransaction({
       from: this.state.account,
       to: '0x5a926b235e992d6ba52d98415e66afe5078a1690',
       value: '1000000000000000'
