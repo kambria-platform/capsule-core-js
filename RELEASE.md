@@ -1,10 +1,10 @@
 # RELEASE LOG
 
-## 1.1.0
+## 1.1.0 - 1.1.1
 
 ### Fixes
 
-* None.
+* Throw error when setAccount failed.
 
 ### Enhancements
 
