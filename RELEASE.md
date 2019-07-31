@@ -4,13 +4,13 @@
 
 ### Fixes
 
-* Import token test.
+* None.
 
 ### Enhancements
 
 * Restricted network will be `true` in all case. You cannot be able to config.
 * Self-define the type of wallet.
-* Allow `approveTransaction` in config.
+* Allow `approveTransaction` and `waitTransaction` in config.
 
 ---
 

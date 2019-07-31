@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
 import { Trust } from 'capsule-core-js';
 import Confirm from '../core/confirm';
-import Waiting from '../core/waiting';
 
 const DEFAULT_STATE = {
   visible: false,
-  waiting: false,
   network: null,
   account: null,
   balance: null,
@@ -19,7 +17,6 @@ class TestTrust extends Component {
     this.state = { ...DEFAULT_STATE };
     this.options = {
       getAuthentication: this.getAuthentication,
-      getWaiting: this.getWaiting,
       getApproval: this.getApproval
     }
   }
@@ -39,15 +36,6 @@ class TestTrust extends Component {
         });
       }
     })
-  }
-
-  getWaiting = {
-    open: () => {
-      this.setState({ waiting: true });
-    },
-    close: () => {
-      this.setState({ waiting: false });
-    }
   }
 
   getAuthentication = {
@@ -108,7 +96,6 @@ class TestTrust extends Component {
           onCancel={this.state.onCancel}
           onApprove={this.state.onApprove}
         />
-        <Waiting open={this.state.waiting} />
       </div>
     );
   }

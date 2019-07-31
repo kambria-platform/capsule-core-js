@@ -55,6 +55,12 @@ import { MEW } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 
+var getApproval = (txParams, callback) => {
+  // This function is show off the approval with transaction's params
+  // When user approve, return callback(null, true)
+  // If denied, return callback(null, false)
+}
+
 var getAuthentication = {
   open: (qrcode, callback) => {
     // This function is to show off the QRcode to user
@@ -66,7 +72,12 @@ var getAuthentication = {
   }
 }
 
-var mew = new MEW(net);
+const options = {
+  getApproval,
+  getAuthentication
+}
+
+var mew = new MEW(net, options);
 
 mew.getAccountsByMEW((er, web3) => {
   if (er) return console.error(er);
@@ -74,12 +85,57 @@ mew.getAccountsByMEW((er, web3) => {
   console.log('Provider instance is:', mew);
 });
 
-mew.setAccountByMEW(getAuthentication, (er, web3) => {
+mew.setAccountByMEW((er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', mew);
 });
 ```
+
+## Trust (MyEtherwallet) module
+
+```
+import { Trust } from 'capsule-core-js';
+
+var net = 4 \\ Your network id
+
+var getApproval = (txParams, callback) => {
+  // This function is show off the approval with transaction's params
+  // When user approve, return callback(null, true)
+  // If denied, return callback(null, false)
+}
+
+var getAuthentication = {
+  open: (qrcode, callback) => {
+    // This function is to show off the QRcode to user
+    // User must use Trust wallet on their phone to scan the QRcode and establish the connection
+    // When the connection is established, callback will be called
+  },
+  close: () => {
+    // Turn off the modal
+  }
+}
+
+const options = {
+  getApproval,
+  getAuthentication
+}
+
+var trust = new Trust(net, options);
+
+trust.getAccountsByTrustWallet((er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', mew);
+});
+
+trust.setAccountByTrustWallet((er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', mew);
+});
+```
+
 
 ## Isoxys module
 
@@ -90,14 +146,25 @@ import { Isoxys } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 
+var getApproval = (txParams, callback) => {
+  // This function is show off the approval with transaction's params
+  // When user approve, return callback(null, true)
+  // If denied, return callback(null, false)
+}
+
 var getPassphrase = (callback) => {
-  // This function to show off the input form
+  // This function is to show off the input form
   // User must enter a temporary passphrase to protect the data in this session
   // When user entered passphrase, return callback(null, passphrase)
   // If denied, return callback('Reason msg', null)
 }
 
-var isoxys = new Isoxys(net);
+const options = {
+  getApproval,
+  getPassphrase
+}
+
+var isoxys = new Isoxys(net, options);
 
 
 // Privatekey
@@ -110,7 +177,7 @@ isoxys.getAccountByPrivatekey(privatekey, (er, address) => {
 });
 
 var privatekey = ... // Private key
-isoxys.setAccountByPrivatekey(privatekey, getPassphrase, (er, web3) => {
+isoxys.setAccountByPrivatekey(privatekey, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', isoxys);
@@ -134,7 +201,7 @@ var mnemonic = ... // Mnemonic string
 var password = ... // Mnemonic password
 var path = ... // Derivation path
 var index = ... // Derivation child index
-isoxys.setAccountByMnemonic(mnemonic, password, path, index, getPassphrase, (er, web3) => {
+isoxys.setAccountByMnemonic(mnemonic, password, path, index, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', isoxys);
@@ -153,7 +220,7 @@ isoxys.getAccountByKeystore(input, password, (er, address) => {
 
 var input = ... // Json object of keystore
 var password = .. // Keystore password
-isoxys.setAccountByKeystore(input, password, getPassphrase, (er, web3) => {
+isoxys.setAccountByKeystore(input, password, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', isoxys);
@@ -167,7 +234,27 @@ import { Ledger } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 
-var ledger = new Ledger(net);
+var getApproval = (txParams, callback) => {
+  // This function is show off the approval with transaction's params
+  // When user approve, return callback(null, true)
+  // If denied, return callback(null, false)
+}
+
+var getWaiting = {
+  open: () => {
+    // Open waiting modal
+  },
+  close: () => {
+    // Close waiting modal
+  }
+}
+
+const options = {
+  getApproval,
+  getWaiting
+}
+
+var ledger = new Ledger(net, options);
 
 var path = ... // Derivation path
 var limit = ... // The number of records in a page (pagination)
@@ -194,7 +281,27 @@ import { Trezor } from 'capsule-core-js';
 
 var net = 4 \\ Your network id
 
-var trezor = new Trezor(net);
+var getApproval = (txParams, callback) => {
+  // This function is show off the approval with transaction's params
+  // When user approve, return callback(null, true)
+  // If denied, return callback(null, false)
+}
+
+var getWaiting = {
+  open: () => {
+    // Open waiting modal
+  },
+  close: () => {
+    // Close waiting modal
+  }
+}
+
+const options = {
+  getApproval,
+  getWaiting
+}
+
+var trezor = new Trezor(net, options);
 
 var path = ... // Derivation path
 var limit = ... // The number of records in a page (pagination)
@@ -264,18 +371,28 @@ class Example extends Component {
   constructor() {
     super();
 
-    this.isoxys = new Isoxys(NETWORK);
+    this.options = {
+      getApprove: this.getApprove,
+      getPassphrase: this.getPassphrase
+    }
+    this.isoxys = new Isoxys(NETWORK, this.options);
   }
 
   componentDidMount() {
-    this.isoxys.setAccountByMnemonic(accOpts.mnemonic, accOpts.password, accOpts.path, accOpts.index, this.getPassphrase, (er, re) => {
+    this.isoxys.setAccountByMnemonic(accOpts.mnemonic, accOpts.password, accOpts.path, accOpts.index, (er, re) => {
       if (er) return console.error(er);
 
       console.log('Provider instance is:', this.isoxys);
     });
   }
 
-  getPassphrase(callback) {
+  getApprove = (txParams, callback) => {
+    var approved = window.confirm(JSON.stringify(tx, txParams));
+    if (approved) return callback(null, true);
+    return callback(null, false);
+  }
+
+  getPassphrase = (callback) => {
     var passphrase = window.prompt('Please enter passphrase:');
     if (!passphrase) return callback('User denied signing transaction', null);
     return callback(null, passphrase);
