@@ -19,45 +19,42 @@
   },
   "keywords": [
     "kambria",
-    "capsule-wallet",
-    "ethereum"
+    "ethereum",
+    "browser-wallet"
   ],
   "author": "Tu Phan",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kambria-platform/capsule-core-js/issues"
   },
-  "homepage": "https://github.com/kambria-platform/capsule-core-js#readme",
   "dependencies": {
-    "@ledgerhq/hw-app-eth": "^4.62.0",
-    "@ledgerhq/hw-transport-u2f": "^4.62.0",
-    "@ledgerhq/hw-transport-webusb": "^4.62.0",
-    "@myetherwallet/mewconnect-web-client": "^1.0.14",
-    "@walletconnect/browser": "^1.0.0-beta.30",
-    "@walletconnect/qrcode-modal": "^1.0.0-beta.30",
+    "@ledgerhq/hw-app-eth": "^5.19.0",
+    "@ledgerhq/hw-transport-u2f": "^5.19.0",
+    "@ledgerhq/hw-transport-webusb": "^5.19.0",
+    "@myetherwallet/mewconnect-web-client": "^2.1.0-RC.5.9",
+    "@walletconnect/browser": "^1.0.0",
+    "@walletconnect/qrcode-modal": "^1.0.15",
     "bip39": "^3.0.2",
-    "crypto-js": "^3.1.9-1",
-    "ethereumjs-tx": "^1.3.7",
-    "ethereumjs-util": "^6.1.0",
-    "ethereumjs-wallet": "^0.6.3",
-    "hdkey": "^1.1.1",
-    "keythereum": "^1.0.4",
-    "trezor-connect": "^7.0.3",
-    "web3": "^0.20.7",
-    "web3-provider-engine": "^15.0.0"
+    "crypto-js": "^4.0.0",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-util": "^7.0.3",
+    "hdkey": "^2.0.1",
+    "trezor-connect": "^8.1.7",
+    "web3": "^1.2.10-rc.0",
+    "web3-provider-engine": "^15.0.12"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@material-ui/core": "^4.3.0",
-    "nodemon": "^1.19.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.0.1"
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@material-ui/core": "^4.11.0",
+    "nodemon": "^1.19.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1"
   },
   "browserslist": {
     "production": [
