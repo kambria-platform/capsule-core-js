@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
 import { MEW } from 'capsule-core-js';
 import Confirm from '../core/confirm';
 
@@ -16,38 +15,6 @@ class TestMEW extends Component {
   constructor() {
     super();
     this.state = { ...DEFAULT_STATE };
-    this.options = {
-      getApproval: this.getApproval,
-      getAuthentication: this.getAuthentication
-    }
-  }
-
-  getApproval = (params, callback) => {
-    this.setState({
-      visible: true,
-      message: `From: ${params.from} / To: ${params.to} / Value: ${params.value}`,
-      onCancel: () => {
-        this.setState({ visible: false }, () => {
-          return callback(null, false);
-        });
-      },
-      onApprove: () => {
-        this.setState({ visible: false }, () => {
-          return callback(null, true);
-        });
-      }
-    })
-  }
-
-  getAuthentication = {
-    open: (code, callback) => {
-      WalletConnectQRCodeModal.open(code, () => {
-        return callback('User denied to connect', null);
-      });
-    },
-    close: () => {
-      WalletConnectQRCodeModal.close();
-    }
   }
 
   connect = () => {
@@ -90,13 +57,6 @@ class TestMEW extends Component {
         <p>Network: {this.state.network}</p>
         <p>Account: {this.state.account}</p>
         <p>Balance: {this.state.balance}</p>
-        <Confirm
-          open={this.state.visible}
-          message={this.state.message}
-          onClose={this.state.onCancel}
-          onCancel={this.state.onCancel}
-          onApprove={this.state.onApprove}
-        />
       </div>
     );
   }
