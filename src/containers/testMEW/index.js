@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { MEW } from 'capsule-core-js';
-import Confirm from '../core/confirm';
 
 const DEFAULT_STATE = {
   visible: false,

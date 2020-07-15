@@ -1,6 +1,6 @@
 # Introduction
 
-🚀 Capsule-Core-JS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power their Dapps. Capsule-Core-JS is an opensource and you can feel free to use it as well as contribute it.
+🚀 CapsuleCoreJS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power up their Dapps. CapsuleCoreJS is an open-source and you can freely use it, and contribute it as well.
 
 * [View release log](./RELEASE.md)
 
@@ -23,9 +23,9 @@ In case you would like to fetch some info from blockchain without account associ
 ```
 import { NonWallet } from 'capsule-core-js';
 
-var net = 4 \\ Your network id
+const net = 4 \\ Your network id
 
-var nonWallet = new NonWallet(net);
+const nonWallet = new NonWallet(net);
 nonWallet.init((er, web3) => {
   if (er) return console.error(er);
 
@@ -38,9 +38,9 @@ nonWallet.init((er, web3) => {
 ```
 import { Metamask } from 'capsule-core-js';
 
-var net = 4 \\ Your network id
+const net = 4 \\ Your network id
 
-var metamask = new Metamask(net);
+const metamask = new Metamask(net);
 metamask.setAccountByMetamask((er, web3) => {
   if (er) return console.error(er);
 
@@ -53,32 +53,9 @@ metamask.setAccountByMetamask((er, web3) => {
 ```
 import { MEW } from 'capsule-core-js';
 
-var net = 4 \\ Your network id
+const net = 4 \\ Your network id
 
-var getApproval = (txParams, callback) => {
-  // This function is show off the approval with transaction's params
-  // When user approve, return callback(null, true)
-  // If denied, return callback(null, false)
-}
-
-var getAuthentication = {
-  open: (qrcode, callback) => {
-    // This function is to show off the QRcode to user
-    // User must use MEW application on their phone to scan the QRcode and establish the connection
-    // When the connection is established, callback will be called
-  },
-  close: () => {
-    // Turn off the modal
-  }
-}
-
-const options = {
-  getApproval,
-  getAuthentication
-}
-
-var mew = new MEW(net, options);
-
+const mew = new MEW(net);
 mew.getAccountsByMEW((er, web3) => {
   if (er) return console.error(er);
 
@@ -121,7 +98,7 @@ const options = {
   getAuthentication
 }
 
-var trust = new Trust(net, options);
+const trust = new Trust(net, options);
 
 trust.getAccountsByTrustWallet((er, web3) => {
   if (er) return console.error(er);
@@ -139,20 +116,20 @@ trust.setAccountByTrustWallet((er, web3) => {
 
 ## Isoxys module
 
-Isoxys is a group of software wallets. It includes mnemonic, keystore and private key. All of them are sensitive data, so we do not recommend to use it.
+Isoxys is a group of software wallets. It includes mnemonic, keystore, and private key. All of them are sensitive data, so we do not recommend to use it.
 
 ```
 import { Isoxys } from 'capsule-core-js';
 
-var net = 4 \\ Your network id
+const net = 4 \\ Your network id
 
-var getApproval = (txParams, callback) => {
+const getApproval = (txParams, callback) => {
   // This function is show off the approval with transaction's params
   // When user approve, return callback(null, true)
   // If denied, return callback(null, false)
 }
 
-var getPassphrase = (callback) => {
+const getPassphrase = (callback) => {
   // This function is to show off the input form
   // User must enter a temporary passphrase to protect the data in this session
   // When user entered passphrase, return callback(null, passphrase)
@@ -169,14 +146,14 @@ var isoxys = new Isoxys(net, options);
 
 // Privatekey
 
-var privatekey = ... // Private key
+const privatekey = ... // Private key
 isoxys.getAccountByPrivatekey(privatekey, (er, address) => {
   if (er) return console.error(er);
 
   console.log('Address:', address);
 });
 
-var privatekey = ... // Private key
+const privatekey = ... // Private key
 isoxys.setAccountByPrivatekey(privatekey, (er, web3) => {
   if (er) return console.error(er);
 
@@ -186,21 +163,21 @@ isoxys.setAccountByPrivatekey(privatekey, (er, web3) => {
 
 // Mnemonic
 
-var mnemonic = ... // Mnemonic string
-var password = ... // Mnemonic password
-var path = ... // Derivation path
-var limit = ... // The number of records in a page (pagination)
-var page = ... // Page index (pagination)
+const mnemonic = ... // Mnemonic string
+const password = ... // Mnemonic password
+const path = ... // Derivation path
+const limit = ... // The number of records in a page (pagination)
+const page = ... // Page index (pagination)
 isoxys.getAccountsByMnemonic(mnemonic, password, path, limit, page, (er, addresses) => {
   if (er) return console.error(er);
 
   console.log('Address list:', addresses);
 });
 
-var mnemonic = ... // Mnemonic string
-var password = ... // Mnemonic password
-var path = ... // Derivation path
-var index = ... // Derivation child index
+const mnemonic = ... // Mnemonic string
+const password = ... // Mnemonic password
+const path = ... // Derivation path
+const index = ... // Derivation child index
 isoxys.setAccountByMnemonic(mnemonic, password, path, index, (er, web3) => {
   if (er) return console.error(er);
 
@@ -210,16 +187,16 @@ isoxys.setAccountByMnemonic(mnemonic, password, path, index, (er, web3) => {
 
 // Keystore
 
-var input = ... // Json object of keystore
-var password = .. // Keystore password
+const input = ... // Json object of keystore
+const password = .. // Keystore password
 isoxys.getAccountByKeystore(input, password, (er, address) => {
   if (er) return console.error(er);
 
   console.log('Address:', address);
 });
 
-var input = ... // Json object of keystore
-var password = .. // Keystore password
+const input = ... // Json object of keystore
+const password = .. // Keystore password
 isoxys.setAccountByKeystore(input, password, (er, web3) => {
   if (er) return console.error(er);
 
@@ -232,15 +209,15 @@ isoxys.setAccountByKeystore(input, password, (er, web3) => {
 ```
 import { Ledger } from 'capsule-core-js';
 
-var net = 4 \\ Your network id
+const net = 4 \\ Your network id
 
-var getApproval = (txParams, callback) => {
+const getApproval = (txParams, callback) => {
   // This function is show off the approval with transaction's params
   // When user approve, return callback(null, true)
   // If denied, return callback(null, false)
 }
 
-var getWaiting = {
+const getWaiting = {
   open: () => {
     // Open waiting modal
   },
@@ -254,19 +231,19 @@ const options = {
   getWaiting
 }
 
-var ledger = new Ledger(net, options);
+const ledger = new Ledger(net, options);
 
-var path = ... // Derivation path
-var limit = ... // The number of records in a page (pagination)
-var page = ... // Page index (pagination)
+const path = ... // Derivation path
+const limit = ... // The number of records in a page (pagination)
+const page = ... // Page index (pagination)
 ledger.getAccountsByLedgerNanoS(path, limit, page, (er, addresses) => {
   if (er) return console.error(er);
 
   console.log('Address list:', addresses);
 });
 
-var path = ... // Derivation path
-var index = ... // Derivation child index
+const path = ... // Derivation path
+const index = ... // Derivation child index
 ledger.setAccountByLedgerNanoS(path, index, (er, web3) => {
   if (er) return console.error(er);
 
@@ -279,15 +256,15 @@ ledger.setAccountByLedgerNanoS(path, index, (er, web3) => {
 ```
 import { Trezor } from 'capsule-core-js';
 
-var net = 4 \\ Your network id
+const net = 4 \\ Your network id
 
-var getApproval = (txParams, callback) => {
+const getApproval = (txParams, callback) => {
   // This function is show off the approval with transaction's params
   // When user approve, return callback(null, true)
   // If denied, return callback(null, false)
 }
 
-var getWaiting = {
+const getWaiting = {
   open: () => {
     // Open waiting modal
   },
@@ -301,19 +278,19 @@ const options = {
   getWaiting
 }
 
-var trezor = new Trezor(net, options);
+const trezor = new Trezor(net, options);
 
-var path = ... // Derivation path
-var limit = ... // The number of records in a page (pagination)
-var page = ... // Page index (pagination)
+const path = ... // Derivation path
+const limit = ... // The number of records in a page (pagination)
+const page = ... // Page index (pagination)
 trezor.getAccountsByTrezorOne(path, limit, page, (er, addresses) => {
   if (er) return console.error(er);
 
   console.log('Address list:', addresses);
 });
 
-var path = ... // Derivation path
-var index = ... // Derivation child index
+const path = ... // Derivation path
+const index = ... // Derivation child index
 trezor.setAccountByTrezorOne(path, index, (er, web3) => {
   if (er) return console.error(er);
 
@@ -323,7 +300,7 @@ trezor.setAccountByTrezorOne(path, index, (er, web3) => {
 
 ## Fetch account info
 
-After received a `provider` instance. You can fetch account info by `fetch` function.
+After receiving a `provider` instance. You can fetch account info by `fetch` function.
 
 ```
 provider.fetch().then(result => {
@@ -335,10 +312,10 @@ provider.fetch().then(result => {
 
 ## Watch changes of account info
 
-After received a `provider` instance. You can watch account info if any changes by `watch` function.
+After receiving a `provider` instance. You can watch account info if any changes by `watch` function.
 
 ```
-let watcher = provider.watch((er, re) => {
+const watcher = provider.watch((er, re) => {
   if(er) return console.error(er);
 
   // Called only when having a change.
@@ -404,7 +381,7 @@ export default Example;
 
 ## How to test?
 
-Because this package supports many wallets that were built for many enviroments, many purposes by many parties. As a complex result, a general test scheme is very difficult. We might implement e2e tests by utilizing React as a redering machine for running Selenium, Mocha and Chai.
+Because this package supports many wallets that were built for many environments, many purposes by many parties. As a complex result, a general test scheme is very difficult. We might implement e2e tests by utilizing React as a rendering machine for running Selenium, Mocha and Chai.
 
 The related folder for testing comprises `public`, `src` (React folders) and `test` (Test descriptions).
 

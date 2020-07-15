@@ -1,5 +1,19 @@
 # RELEASE LOG
 
+## 1.2.0
+
+### Fixes
+
+* Remove obsolete packages: `@walletconnect/browser`, `keytherum`.
+
+### Enhancements
+
+* Upgrade `web3` to version `1.x`.
+* Replace `MewConnect` by `MEWWallet`.
+* Apply new types of transaction due to hard-forks.
+
+---
+
 ## 1.1.0 - 1.1.3
 
 ### Fixes

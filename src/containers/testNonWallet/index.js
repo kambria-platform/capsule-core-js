@@ -15,7 +15,7 @@ class TestNonWallet extends Component {
   }
 
   get = (web3) => {
-    web3.version.getNetwork((er, re) => {
+    web3.eth.net.getId((er, re) => {
       if (er) return console.error(er);
       return this.setState({ network: re });
     });
