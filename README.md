@@ -36,16 +36,46 @@ nonWallet.init((er, web3) => {
 ## Metamask module
 
 ```
-import { Metamask } from 'capsule-core-js';
+import { MEW } from 'capsule-core-js';
 
 const net = 4 \\ Your network id
 
-const metamask = new Metamask(net);
-metamask.setAccountByMetamask((er, web3) => {
+const getApproval = (txParams, callback) => {
+  // This function is show off the approval with transaction's params
+  // When user approve, return callback(null, true)
+  // If denied, return callback(null, false)
+}
+
+const getAuthentication = {
+  open: (qrcode, callback) => {
+    // This function is to show off the QRcode to user
+    // User must use MEW application on their phone to scan the QRcode and establish the connection
+    // When the connection is established, callback will be called
+  },
+  close: () => {
+    // Turn off the modal
+  }
+}
+
+const options = {
+  getApproval,
+  getAuthentication
+}
+
+const mew = new MEW(net, options);
+
+mew.getAccountsByMEW((er, web3) => {
   if (er) return console.error(er);
 
-  console.log('Provider instance is:', metamask);
+  console.log('Provider instance is:', mew);
 });
+
+mew.setAccountByMEW((er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', mew);
+});
+
 ```
 
 ## MEW (MyEtherwallet) module
