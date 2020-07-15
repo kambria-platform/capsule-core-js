@@ -9,8 +9,7 @@
 ### Enhancements
 
 * Upgrade `web3` to version `1.x`.
-* Replace `MewConnect` by `MEWWallet`.
-* Apply new types of transaction due to hard-forks.
+* Apply new types of transactions due to hard-forks.
 
 ---
 
@@ -18,11 +17,11 @@
 
 ### Fixes
 
-* Throw error when setAccount failed.
+* Throw error when `setAccount` failed.
 
 ### Enhancements
 
-* Restricted network will be `true` in all case. You cannot be able to config.
+* Restricted network will be `true` in all cases. You cannot be able to config.
 * Self-define the type of wallet.
 * Allow `approveTransaction` and `waitTransaction` in config.
 
@@ -32,7 +31,7 @@
 
 ### Fixes
 
-* Using `mainnet` as default network.
+* Using `mainnet` as the default network.
 
 ### Enhancements
 
@@ -81,7 +80,7 @@
 
 ### Fixes
 
-* Cache addresses when deriving from root node.
+* Cache addresses when deriving from the root node.
 
 ### Enhancements
 
@@ -95,7 +94,7 @@
 
 * Fix bug `window.capsuleWallet.isConnected` undefined.
 * Change `setInterval` to `filter('latest')` for efficient change detection.
-* New `watch` function api.
+* New `watch` api function.
 
 ```
 let watcher = this.<wallet>.watch((er, re) => {
