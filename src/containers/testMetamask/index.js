@@ -15,7 +15,7 @@ class TestMetamask extends Component {
   }
 
   connect = () => {
-    this.metamask = new Metamask(4, 'softwallet', true);
+    this.metamask = new Metamask(4, 'softwallet');
     this.metamask.setAccountByMetamask((er, web3) => {
       if (er) return console.error(er);
 
