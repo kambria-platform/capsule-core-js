@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Trezor } from 'capsule-core-js';
 import Confirm from '../core/confirm';
 import Waiting from '../core/waiting';
+import KAT from '../../helpers/kat';
 
 
 const DEFAULT_STATE = {
@@ -55,9 +56,16 @@ class TestTrezor extends Component {
     this.trezor.getAccountsByTrezorOne("m/44'/60'/0'/0", 5, 0, (er, re) => {
       this.trezor.setAccountByTrezorOne("m/44'/60'/0'/0", 0, (er, web3) => {
         if (er) return console.error(er);
+        this.kat = new KAT(web3);
         this.watcher = this.trezor.watch((er, re) => {
           if (er) return console.error(er);
-          this.setState(re);
+          this.setState(re, () => {
+            return this.kat.balanceOf(this.state.account).then(kat => {
+              return this.setState({ kat });
+            }).catch(er => {
+              return console.error(er);
+            });
+          });
         });
       });
     });
@@ -74,6 +82,16 @@ class TestTrezor extends Component {
     });
   }
 
+  sendErc20Tx = () => {
+    if (this.kat) this.kat.transfer(this.state.account, '1000000000000000000')
+      .then(txId => {
+        return console.log(txId);
+      })
+      .catch(er => {
+        return console.error(er);
+      });
+  }
+
   logout = () => {
     if (this.trezor) this.trezor.logout();
   }
@@ -87,11 +105,13 @@ class TestTrezor extends Component {
       <div>
         <h1>Trezor Test</h1>
         <button onClick={this.connect}>Connect</button>
-        <button onClick={this.sendTx}>Send</button>
+        <button onClick={this.sendTx}>Send 0.001 ETH</button>
+        <button onClick={this.sendErc20Tx}>Send 1 KAT</button>
         <button onClick={this.logout}>Logout</button>
         <p>Network: {this.state.network}</p>
         <p>Account: {this.state.account}</p>
         <p>Balance: {this.state.balance}</p>
+        <p>KAT: {this.state.kat}</p>
         <Confirm
           open={this.state.visible}
           message={this.state.message}
