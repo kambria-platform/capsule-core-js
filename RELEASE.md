@@ -1,5 +1,16 @@
 # RELEASE LOG
 
+## 1.2.8
+
+### Fixes
+
+* Fix Mnemonic
+* Handle wrong Keystore password
+
+### Enhancements
+
+* None
+
 ## 1.2.0 - 1.2.7
 
 ### Fixes
