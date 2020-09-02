@@ -1,5 +1,15 @@
 # RELEASE LOG
 
+## 1.2.9
+
+### Fixes
+
+* Safely check private key
+
+### Enhancements
+
+* Add LiteWallet
+
 ## 1.2.8
 
 ### Fixes

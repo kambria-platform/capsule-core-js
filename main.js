@@ -4,7 +4,7 @@ var MEW = require('./dist/mew');
 var Trust = require('./dist/trust');
 var Ledger = require('./dist/ledger');
 var Trezor = require('./dist/trezor');
-var { NonWallet } = require('./dist/provider');
+var { LiteWallet, NonWallet } = require('./dist/provider');
 
 module.exports = {
   Isoxys,
@@ -13,5 +13,6 @@ module.exports = {
   Trust,
   Ledger,
   Trezor,
+  LiteWallet,
   NonWallet,
 }
