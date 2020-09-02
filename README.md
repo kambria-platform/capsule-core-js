@@ -1,6 +1,6 @@
 # Introduction
 
-🚀 CapsuleCoreJS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power up their Dapps. CapsuleCoreJS is an open-source and you can freely use it, and contribute it as well.
+🚀 CapsuleCoreJS serves a friendly interface of several Ethereum wallets and that might help developers can instantly power up their Dapps. CapsuleCoreJS is open-source. You can freely use it, and contribute it as well.
 
 * [View release log](./RELEASE.md)
 
@@ -15,23 +15,6 @@ npm install --save capsule-core-js
 ### Usage:
 
 # API
-
-## NonWallet module
-
-In case you would like to fetch some info from blockchain without account association, `NonWallet` is for you.
-
-```
-import { NonWallet } from 'capsule-core-js';
-
-const net = 4 \\ Your network id
-
-const nonWallet = new NonWallet(net);
-nonWallet.init((er, web3) => {
-  if (er) return console.error(er);
-
-  console.log('Provider instance is:', nonWallet);
-});
-```
 
 ## Metamask module
 
@@ -325,6 +308,43 @@ trezor.setAccountByTrezorOne(path, index, (er, web3) => {
   if (er) return console.error(er);
 
   console.log('Provider instance is:', trezor);
+});
+```
+
+## LiteWallet module
+
+`LiteWallet` is an unsecured-for-browser provider when your account isn't under any cryptographic umbrella. This module is suitable for server sides only.
+
+```
+import { LiteWallet } from 'capsule-core-js';
+
+const net = 4 \\ Your network id
+const opts = {
+  address: ... // Address
+  privateKey: ... // Private key
+}
+const liteWallet = new LiteWallet(net);
+liteWallet.init(opts, (er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', web3);
+});
+```
+
+## NonWallet module
+
+In case you would like to fetch some info from blockchain without account association, `NonWallet` is for you.
+
+```
+import { NonWallet } from 'capsule-core-js';
+
+const net = 4 \\ Your network id
+
+const nonWallet = new NonWallet(net);
+nonWallet.init((er, web3) => {
+  if (er) return console.error(er);
+
+  console.log('Provider instance is:', web3);
 });
 ```
 
